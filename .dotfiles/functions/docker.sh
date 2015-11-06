@@ -2,6 +2,9 @@
 
 docker-machine-init() {
   local MACHINE_NAME="$DOCKER_DEV_MACHINE_NAME"
+  local DOCKER_DEV_MACHINE_DISK_MB=80000
+  # use 1/2 physical ram of machine
+  local DOCKER_DEV_MACHINE_RAM_MB=$(expr $(grep MemTotal /proc/meminfo | awk '{print $2}') / $(expr 2 \* 1024))
   docker-machine create \
     -d virtualbox \
       --virtualbox-disk-size $DOCKER_DEV_MACHINE_DISK_MB \
