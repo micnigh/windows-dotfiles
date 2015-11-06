@@ -1,3 +1,3 @@
 #!/bin/bash
-. .dotfiles/functions/virtualbox.sh
-. .dotfiles/functions/docker.sh
+. ~/.dotfiles/functions/virtualbox.sh
+. ~/.dotfiles/functions/docker.sh
