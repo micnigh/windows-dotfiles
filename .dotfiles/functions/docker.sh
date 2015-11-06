@@ -95,10 +95,3 @@ CMD
     sh -c "$DOCKER_CMD"
   fi
 }
-
-docker-compose() {
-  if [[ "$(docker images -q docker-compose 2> /dev/null)" == "" ]]; then
-    docker build -t docker-compose github.com/docker/compose#1.4.0rc3
-  fi
-  docker run --rm -ti -v //var/run/docker.sock://var/run/docker.sock -v "/$PWD":"/$PWD" -w "/$PWD" docker-compose "$@"
-}
