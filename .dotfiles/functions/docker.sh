@@ -34,32 +34,6 @@ docker-machine-up() {
   eval $(docker-machine env "$MACHINE_NAME") > /dev/null 2>&1
 }
 
-b2dup() {
-  local MACHINE_NAME="boot2docker-vm"
-  if [ $(boot2docker status) != "running" ]; then
-    echo "Starting boot2docker"
-
-    # share folders
-    virtualbox-share-path "$MACHINE_NAME" "c/Users" "C:/Users"
-    virtualbox-share-path "$MACHINE_NAME" "c/projects" "C:/projects"
-
-    # open ports
-    virtualbox-open-port "$MACHINE_NAME" "80"
-    virtualbox-open-port "$MACHINE_NAME" "443"
-
-    boot2docker up
-    boot2docker ssh 'sudo mkdir -p /c/projects && sudo mount -t vboxsf c/projects /c/projects'
-    boot2docker ssh 'sudo mkdir -p /c/Users && sudo mount -t vboxsf c/Users /c/Users'
-  fi
-
-  # rebuild security certificates - workaround for [#531](https://github.com/docker/machine/issues/531#issuecomment-120554419)
-  #echo "Generating new certificate if needed"
-  #boot2docker ssh 'sudo /etc/init.d/docker restart'
-
-  echo "Loading boot2docker shell variables"
-  eval $(boot2docker shellinit) > /dev/null 2>&1
-}
-
 docker-remove-exited-containers() {
   docker rm $(docker ps -q -f status=exited)
 }
@@ -92,8 +66,6 @@ CMD
 
   if which docker-machine >/dev/null; then
     docker-machine ssh $(docker-machine active) "$DOCKER_CMD"
-  elif which boot2docker >/dev/null; then
-    boot2docker ssh -t "$DOCKER_CMD"
   else
     sh -c "$DOCKER_CMD"
   fi
@@ -119,8 +91,6 @@ CMD
 
   if which docker-machine >/dev/null; then
     docker-machine ssh $(docker-machine active) "$DOCKER_CMD"
-  elif which boot2docker >/dev/null; then
-    boot2docker ssh -t "$DOCKER_CMD"
   else
     sh -c "$DOCKER_CMD"
   fi
