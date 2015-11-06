@@ -8,4 +8,5 @@ export PATH="$PATH:$HOME/npm/bin"
 export PATH="$PATH:$HOME/npm"
 
 . ~/.dotfiles/env/docker.sh
+. ~/.dotfiles/env/git-ssh-forwarding.sh
 . ~/.dotfiles/env/git.sh
