@@ -14,7 +14,7 @@ docker-machine-init() {
 docker-machine-up() {
   local MACHINE_NAME="$DOCKER_DEV_MACHINE_NAME"
   local VB_PATH="$(virtualbox-find-path)"
-  if [ $(docker-machine ls | grep "^$MACHINE_NAME" | awk "{print \$3}") == "Stopped" ]; then
+  if [ "$(docker-machine status "$MACHINE_NAME")" == "Stopped" ]; then
     echo "Starting development docker-machine \"$MACHINE_NAME\""
 
     # share folders
