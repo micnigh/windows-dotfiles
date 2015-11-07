@@ -6,6 +6,8 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH="$PATH:$HOME/npm/bin"
 export PATH="$PATH:$HOME/npm"
+export ANDROID_HOME="$LOCALAPPDATA/Android/Sdk"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 . ~/.dotfiles/env/docker.sh
 . ~/.dotfiles/env/git-ssh-forwarding.sh
