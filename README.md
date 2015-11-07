@@ -14,16 +14,12 @@ git fetch --all
 git reset --hard origin/master
 ```
 
-# Resources
-
-[how-to-use-git-to-manage-your-user-configuration-files-on-a-linux-vps](https://www.digitalocean.com/community/tutorials/how-to-use-git-to-manage-your-user-configuration-files-on-a-linux-vps)
-
 # Troubleshooting
 
 ## Windows 10 and docker-machine
 
  - Can't create a new machine due to `Error Renaming Connection`
-  - Workaround - Also see [#1706](https://github.com/docker/machine/issues/1706)
+  - Workaround - see [#1706](https://github.com/docker/machine/issues/1706)
 
     ```bash
     # remove all docker-machines and remove `~/.docker/machine`
@@ -32,6 +28,6 @@ git reset --hard origin/master
     docker-machine-init # should now complete without problems
     ```
 
-# TODO
+# Resources
 
- - Research other dotfiles projects to find good organizational patterns without much complexity.
+[how-to-use-git-to-manage-your-user-configuration-files-on-a-linux-vps](https://www.digitalocean.com/community/tutorials/how-to-use-git-to-manage-your-user-configuration-files-on-a-linux-vps)
