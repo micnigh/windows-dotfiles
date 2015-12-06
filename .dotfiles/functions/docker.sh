@@ -17,7 +17,7 @@ docker-machine-init() {
 docker-machine-up() {
   local MACHINE_NAME="$DOCKER_DEV_MACHINE_NAME"
   local VB_PATH="$(virtualbox-find-path)"
-  if [ "$(docker-machine status "$MACHINE_NAME")" == "Stopped" ]; then
+  if [ "$(docker-machine status "$MACHINE_NAME")" != "Running" ]; then
     echo "Starting development docker-machine \"$MACHINE_NAME\""
 
     # share folders
@@ -29,6 +29,7 @@ docker-machine-up() {
     virtualbox-open-port "$MACHINE_NAME" "443"
 
     docker-machine start "$MACHINE_NAME"
+    yes | docker-machine regenerate-certs "$MACHINE_NAME"
     docker-machine ssh "$MACHINE_NAME" 'sudo mkdir -p /c/projects && sudo mount -t vboxsf c/projects /c/projects'
     docker-machine ssh "$MACHINE_NAME" 'sudo mkdir -p /c/Users && sudo mount -t vboxsf c/Users /c/Users'
   fi
