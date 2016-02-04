@@ -9,6 +9,7 @@ export PATH="$PATH:$HOME/npm"
 export ANDROID_HOME="$LOCALAPPDATA/Android/Sdk"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
+. ~/.dotfiles/env/conemu.sh
 . ~/.dotfiles/env/docker.sh
 . ~/.dotfiles/env/git-ssh-forwarding.sh
 . ~/.dotfiles/env/git.sh
