@@ -13,3 +13,4 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 . ~/.dotfiles/env/docker.sh
 . ~/.dotfiles/env/git-ssh-forwarding.sh
 . ~/.dotfiles/env/git.sh
+. ~/.dotfiles/env/msys.sh
